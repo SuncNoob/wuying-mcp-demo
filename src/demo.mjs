@@ -1,3 +1,4 @@
+import { renderReport } from './report.mjs';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { loadConfig } from './config.mjs';
@@ -63,9 +64,7 @@ try {
 } catch(error) { console.error(error.message);process.exitCode=1; }
 finally {
   await writeFile(`${output}report.json`,JSON.stringify({run,results,complete:!process.exitCode},null,2),{mode:0o600});
-  const escape = value => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  const cards=results.map(r=>`<section><h2>${escape(r.stage)} · VERIFIED</h2><p>${escape(r.actual)}</p><img src="${r.stage}.png" alt="Actual cloud execution screenshot"></section>`).join('');
-  await writeFile(`${output}report.html`,`<!doctype html><meta charset="utf-8"><title>Wuying MCP · Execution Report</title><style>body{margin:50px auto;max-width:1200px;background:#081521;color:#eef8ff;font:18px system-ui;padding:20px}h1{font-size:44px}section{margin:40px 0}h2{color:#65e0de}img{width:100%;border-radius:12px}p{color:#abc3d6}</style><h1>Wuying MCP · Real execution</h1><p>${escape(run)} · ${process.exitCode ? 'INCOMPLETE' : 'PASSED'} · Screenshots stay local</p>${cards}`,{mode:0o600});
+  await writeFile(`${output}report.html`,renderReport({run,results,complete:!process.exitCode}),{mode:0o600});
   await c?.close();
   console.log(`Local evidence: ${output}`);
 }
