@@ -12,7 +12,8 @@
     "tools": "node --env-file-if-exists=.env src/cli.mjs tools",
     "doctor": "node --env-file-if-exists=.env src/cli.mjs doctor",
     "call": "node --env-file-if-exists=.env src/cli.mjs call",
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs",
+    "demo": "node --env-file-if-exists=.env src/demo.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.32.1",

@@ -20,8 +20,8 @@
 | 无影端点初始化和鉴权 | 已通过，Streamable HTTP |
 | 无影工具清单与 schema | 已发现 8 个工具，名称带 `aiengine__` 前缀 |
 | 云电脑截图返回 | 已通过，`aiengine__screenshot` 返回 text 与 image，已检查实际桌面 |
-| Browser Use 示例 | 当前端点未暴露浏览器操作工具 |
-| Computer Use 示例 | 截图已通过；当前端点未暴露鼠标键盘工具 |
+| Browser Use 示例 | 已通过：MCP shell → CDP 输入、点击、页面结果校验与截图 |
+| Computer Use 示例 | 已通过：MCP shell → 记事本 Unicode 键盘输入、文本校验与截图 |
 | ChatGPT / Secure MCP Tunnel | 待账号授权与连接 |
 
 验收时记录实例操作系统、服务版本、日期、工具名和成功/失败状态。凭据、完整连接 URL、客户桌面截图与原始调用结果应保留在本地，不上传公共仓库。
@@ -40,4 +40,6 @@
 
 当前实现不自动刷新 OAuth 或重连，也不代理资源、提示词订阅、服务器主动采样或长任务协议。聚焦同步工具调用，便于客户理解并按自己的部署扩展。
 
-本次使用本地 `allowTools: ["aiengine__screenshot"]` 精确开放截图工具，未放开 shell 或文件操作。服务聚合可能为工具名称添加前缀；请按实际清单配置，不通过去前缀自动扩大权限。真实截图和连接信息仅保存在本地忽略目录，未公开发布。
+首次截图检查使用本地 `allowTools: ["aiengine__screenshot"]` 精确开放截图工具，未放开 shell 或文件操作。服务聚合可能为工具名称添加前缀；请按实际清单配置，不通过去前缀自动扩大权限。真实截图和连接信息仅保存在本地忽略目录，未公开发布。
+
+后续真实 Demo 通过显式 `npm run demo` 临时允许 shell、write_file、read_file，未修改普通桥接默认权限。它使用固定 PowerShell 脚本驱动云电脑 Chrome 和记事本；源码见 `remote/`。浏览器证据由 CDP 在页面执行后捕获，桌面证据由 Windows 在文本校验后捕获，均通过 MCP 文件工具取回。

@@ -6,7 +6,7 @@ A runnable MCP client and stdio bridge that connects an AI client to **your real
 
 This is a reference integration, not an official Alibaba Cloud SDK. It does not provision cloud resources or simulate a desktop.
 
-**Validation status:** local protocol tests cover Streamable HTTP, legacy SSE, authentication, tool discovery, argument validation, image forwarding, errors and stdio bridging. On 2026-10-10, a real Wuying endpoint passed authentication, tool discovery (8 tools) and desktop screenshot execution. That endpoint did not expose browser or mouse/keyboard tools. Interactive tasks and ChatGPT account integration remain unverified.
+**Validation status:** local protocol tests cover Streamable HTTP, legacy SSE, authentication, tool discovery, argument validation, image forwarding, errors and stdio bridging. On 2026-10-10, a real Wuying endpoint passed authentication, tool discovery (8 tools) and desktop screenshot execution. That endpoint did not expose browser or mouse/keyboard tools. Browser input/click and Notepad keyboard input were subsequently verified on the real cloud computer via MCP shell, CDP and Windows UI Automation/SendInput. ChatGPT account integration remains unverified.
 
 ## Quick start
 
@@ -31,6 +31,14 @@ npm run call -- ACTUAL_TOOL_NAME --args arguments.local.json
 ```
 
 Results, including image content, are saved under ignored `.artifacts/`. Configuration and result files should stay local. Calls are serialized per process and never automatically retried. A timeout does not prove the remote action stopped.
+
+## Run the verified Windows demo
+
+After configuring `.env`, run `npm run demo` (or `npm run demo -- browser` / `-- desktop`). It explicitly enables the aiengine shell, write_file and read_file tools for this process. A logged-in, unlocked 64-bit Windows desktop with PowerShell, Chrome/Edge and compatible Notepad is required.
+
+The browser flow uses an isolated profile and CDP input/click events on a bundled test page. The desktop flow opens a uniquely named empty document in real Notepad, checks focus, sends Unicode keyboard events and verifies the actual text. A local `.artifacts/run-*/report.html` contains real screenshots. Cloud demo files remain under `C:\Users\Public\WuyingMcpDemo`; close the demo tabs before removing them.
+
+This is a deterministic integration demo, not an autonomous agent or proof of arbitrary website compatibility. It does not claim the remote server exposes native browser/keyboard tools. See [implementation notes](docs/runnable-demo.md).
 
 ## Connect an AI client
 
