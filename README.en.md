@@ -6,7 +6,7 @@ A runnable MCP client and stdio bridge that connects an AI client to **your real
 
 This is a reference integration, not an official Alibaba Cloud SDK. It does not provision cloud resources or simulate a desktop.
 
-**Validation status:** local protocol tests cover Streamable HTTP, legacy SSE, authentication, tool discovery, argument validation, image forwarding, errors and stdio bridging. Real Wuying and ChatGPT account validation still require an actual endpoint and account authorization.
+**Validation status:** local protocol tests cover Streamable HTTP, legacy SSE, authentication, tool discovery, argument validation, image forwarding, errors and stdio bridging. On 2026-10-10, a real Wuying endpoint passed authentication, tool discovery (8 tools) and desktop screenshot execution. That endpoint did not expose browser or mouse/keyboard tools. Interactive tasks and ChatGPT account integration remain unverified.
 
 ## Quick start
 
