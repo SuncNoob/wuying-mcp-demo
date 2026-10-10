@@ -31,6 +31,16 @@ npm run demo
 
 完成后打开 `.artifacts/run-时间戳/report.html`，查看真实浏览器和记事本截图。[运行条件、具体步骤与实现边界](docs/runnable-demo.md)。这条路径只需要当前 `aiengine` 的 shell 与文件工具，无需额外安装 Playwright。
 
+## Windows 应用实战：Power BI
+
+已完成真实销售看板：240 条模拟订单、月度趋势、区域与产品分析，以及区域筛选联动；已保存并重新打开可编辑 PBIX。[查看案例、报表与复现步骤](examples/powerbi-sales/README.md)。
+
+```bash
+npm run demo:powerbi
+```
+
+需要云电脑预先安装 Power BI Desktop。这条命令传入已验证的报表并启动应用；实际验收值和截图见案例说明。
+
 ## 能演示什么
 
 | 路径 | 交互方式 | 客户能看到的结果 |

@@ -7,3 +7,4 @@ config.local.json
 .artifacts/
 *.log
 .DS_Store
+outputs/

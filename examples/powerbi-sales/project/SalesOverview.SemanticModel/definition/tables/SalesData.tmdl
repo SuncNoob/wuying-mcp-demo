@@ -1,0 +1,126 @@
+table SalesData
+	lineageTag: aa14535b-e6a3-4aa6-bb3b-c94b01ea9050
+
+	measure 'Total Revenue' = SUM(SalesData[Revenue])
+		formatString: #,0
+
+	measure 'Total Profit' = SUM(SalesData[Profit])
+		formatString: #,0
+
+	measure 'Profit Margin' = DIVIDE([Total Profit], [Total Revenue])
+		formatString: 0.00%
+
+	measure 'Order Count' = COUNTROWS(SalesData)
+		formatString: #,0
+
+	column OrderID
+		dataType: string
+		lineageTag: 4b0c6425-913c-42bb-92fe-5a2fedce8260
+		summarizeBy: none
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 430a20c3-00ee-444f-bf37-e350021bef4e
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		variation Variation
+			isDefault
+			relationship: 328a3eaf-f7e4-429c-bc10-fc92fcdb132b
+			defaultHierarchy: LocalDateTable_a35cb87d-1f8b-476e-a6d0-a242f5580f17.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: dateTime
+		formatString: yyyy-MM
+		lineageTag: 5b3776d4-3320-480b-b8f3-64f6dcb3e98d
+		summarizeBy: none
+		sourceColumn: Month
+
+		variation Variation
+			isDefault
+			relationship: 28b3cc39-5c87-420f-94f7-985234eda5e4
+			defaultHierarchy: LocalDateTable_5dc81861-d5a1-4119-88b1-cf23f569f860.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Region
+		dataType: string
+		lineageTag: 977bb49f-9c8b-4c50-8133-52e04673a411
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: d3906b89-d702-4ee5-89e5-a0c6b0c30420
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Units
+		dataType: int64
+		formatString: 0
+		lineageTag: b807fbd0-95e8-4059-9179-c2d9d381e080
+		summarizeBy: sum
+		sourceColumn: Units
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: int64
+		formatString: 0
+		lineageTag: d855ecf9-0109-4b80-ba5e-9cad5fcb7509
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revenue
+		dataType: int64
+		formatString: 0
+		lineageTag: 989f0c14-7a19-42d6-8c83-7834ce085f95
+		summarizeBy: sum
+		sourceColumn: Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost
+		dataType: int64
+		formatString: 0
+		lineageTag: d82eaf8b-130a-4c34-ba18-9f3193e3cf5a
+		summarizeBy: sum
+		sourceColumn: Cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column Profit
+		dataType: int64
+		formatString: 0
+		lineageTag: f5231486-4324-46c3-b172-1228d2057054
+		summarizeBy: sum
+		sourceColumn: Profit
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SalesData = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Public\WuyingMcpDemo\powerbi-sales\sales-demo.xlsx"), null, true),
+				    SalesData_Table = Source{[Item="SalesData",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(SalesData_Table,{{"OrderID", type text}, {"OrderDate", type datetime}, {"Month", type date}, {"Region", type text}, {"Product", type text}, {"Units", Int64.Type}, {"UnitPrice", Int64.Type}, {"Revenue", Int64.Type}, {"Cost", Int64.Type}, {"Profit", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

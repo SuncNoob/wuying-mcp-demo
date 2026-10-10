@@ -69,3 +69,7 @@ npm audit
 ```
 
 MIT License. Tests use a local protocol fixture only; they are not evidence of real cloud execution.
+
+## Real Windows application: Power BI
+
+The [Power BI case](examples/powerbi-sales/README.md) includes a working PBIX, synthetic Excel data, editable PBIP source, and screenshots of live region filtering. Run `npm run demo:powerbi` with Power BI already installed on the cloud PC to transfer and launch the supplied report.
