@@ -1,0 +1,7 @@
+{
+  "url": "${WUYING_MCP_URL}",
+  "transport": "streamable-http",
+  "headers": { "Authorization": "Bearer ${WUYING_MCP_TOKEN}" },
+  "profile": "observe",
+  "timeoutMs": 30000
+}

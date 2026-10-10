@@ -1,0 +1,21 @@
+{
+  "name": "wuying-mcp-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Connect ChatGPT and MCP clients to a Wuying cloud computer using its real tool schemas.",
+  "engines": {
+    "node": ">=22.9.0"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/bridge.mjs",
+    "tools": "node --env-file-if-exists=.env src/cli.mjs tools",
+    "doctor": "node --env-file-if-exists=.env src/cli.mjs doctor",
+    "call": "node --env-file-if-exists=.env src/cli.mjs call",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "ajv": "8.20.0"
+  }
+}
