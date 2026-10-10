@@ -6,7 +6,7 @@
 
 这是可运行的 **MCP 客户端与桥接示例**。它连接您自己的无影实例，不创建云电脑，也不包含模拟桌面。不是阿里云官方 SDK。
 
-> 验证状态：已在真实无影 Windows 云电脑完成 Browser Use（浏览器输入、点击与结果校验）和 Computer Use（记事本键盘输入与文本校验）。实现使用 MCP shell + Windows/浏览器接口，附真实截图。本地协议测试也已通过；ChatGPT 自定义连接仍待账号侧配置。
+> 验证状态（2026-10-10）：真实无影 Windows 云电脑已通过浏览器、记事本基础操作和 Power BI 销售看板测试。Power BI 实测包含安装、导入、配置、区域筛选、保存与重开。实现使用 MCP shell + Windows/浏览器接口；本地协议测试 9/9 通过。ChatGPT 账号侧连接、App 内嵌与人机接管尚未验证。
 
 ```mermaid
 flowchart LR
@@ -20,6 +20,16 @@ flowchart LR
 ```
 
 ChatGPT 连接本地桥接需要 Secure MCP Tunnel；其他支持 stdio 的客户端可以直接启动桥接。[完整连接说明](docs/chatgpt.md)。
+
+## 文档导航
+
+| 想了解什么 | 从这里开始 |
+| --- | --- |
+| 这次测试实际做了什么、哪里失败、怎么解决 | [Power BI 完整测试记录](docs/powerbi-test-record.md) |
+| 下载报表并在自己的云电脑运行 | [Power BI 客户运行指南](examples/powerbi-sales/README.md) |
+| 浏览器与记事本基础演示 | [运行说明](docs/runnable-demo.md) |
+| 已验证与未验证的范围 | [验证总览](docs/verification.md) |
+| 嵌入 App 后 MCP 还需优化什么 | [产品化建议（待实现）](docs/mcp-improvements.md) |
 
 ## 直接运行已验证的 Demo
 

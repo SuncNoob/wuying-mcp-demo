@@ -11,6 +11,8 @@
 
 这里的操作通过 MCP 的 shell 能力实现，并非端点新增了 browser_click 等专用工具。演示执行的是可审查的固定脚本，不是自主规划 Agent；ChatGPT 自定义连接仍是独立接入步骤。
 
+业务应用案例另见 [Power BI 运行说明](../examples/powerbi-sales/README.md)与[完整测试记录](powerbi-test-record.md)。`npm run demo` 只执行本页的浏览器/记事本任务；`npm run demo:powerbi` 上传并启动已验证的 Power BI 报表，两条命令的验收范围不同。
+
 ## 运行
 
 本地安装 Node.js 22.9+，执行 `npm ci` 并按 README 配置 `.env`。目标云电脑需已登录、解锁，并具备 64 位 Windows PowerShell、Chrome 或 Edge、Windows 记事本；本次实际验证为新版带标签页的记事本。其他系统版本需要单独验证。

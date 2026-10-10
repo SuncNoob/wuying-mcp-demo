@@ -2,6 +2,13 @@
 
 已在真实无影 Windows 11 云电脑验证：安装 Power BI Desktop → 导入 Excel → 配置原生报表 → 操作区域筛选 → 保存 PBIX → 关闭并重新打开。全部数据均为模拟订单，不含客户数据。
 
+## 阅读导航
+
+- **想先运行：** 阅读本页“直接运行”和“验收步骤”。
+- **想了解实际经过：** [完整测试记录](../../docs/powerbi-test-record.md)，包含十个阶段、失败处理、结果和边界。
+- **想接入自己的 App：** [MCP 与 App 优化建议](../../docs/mcp-improvements.md)，均为待实现设计。
+- **想查看截图报告：** 下载仓库后打开 [report.html](report.html)，GitHub 文件页本身不执行 HTML。
+
 ## 无影在这个案例中提供什么
 
 | 能力 | 本次实际使用方式 | 交付结果 |
@@ -46,7 +53,7 @@ npm run demo:powerbi
 
 本次先在桌面导入 Excel，再按微软支持的 [PBIR 格式](https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-report) 配置图表和 TMDL 度量值，最后回到真实应用完成验证。不是一条命令重新执行从安装到报表设计的全部过程；`demo:powerbi` 复用已经验证的报表文件。
 
-接入经验：显示缩放会影响截图与坐标；完整截图需启用 DPI awareness。某些应用存在隐藏的重复控件，操作后必须检查真实窗口。安装请求超时不代表安装失败，应检查实际文件、版本和进程，再决定是否重试。
+本次遇到的安装超时、截图缩放、文件名输入未生效、隐藏控件和保存定位问题，见[测试经过与故障处理](../../docs/powerbi-test-record.md#遇到的问题与解决经验)。本页聚焦运行步骤，避免将测试过程与客户操作步骤混在一起。
 
 ## English
 

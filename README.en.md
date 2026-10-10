@@ -73,3 +73,11 @@ MIT License. Tests use a local protocol fixture only; they are not evidence of r
 ## Real Windows application: Power BI
 
 The [Power BI case](examples/powerbi-sales/README.md) includes a working PBIX, synthetic Excel data, editable PBIP source, and screenshots of live region filtering. Run `npm run demo:powerbi` with Power BI already installed on the cloud PC to transfer and launch the supplied report.
+
+## Test history and productization notes
+
+- [Power BI test record (Chinese)](docs/powerbi-test-record.md): chronological steps, observed failures, fixes, evidence and unverified scope.
+- [MCP / App improvement proposals (Chinese)](docs/mcp-improvements.md): proposals, not implemented capabilities.
+- [Verification index](docs/verification.md): separates protocol tests, real cloud execution and account/App integration.
+
+The Power BI case was verified on 2026-10-10, including region filtering, saving and reopening. Its launcher reuses the supplied report; it does not repeat the full installation and authoring process. Only reviewed screenshots of synthetic demo data are published. Credentials and raw MCP responses remain local.
